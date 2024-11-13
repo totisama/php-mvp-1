@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+	class="h-full @if($valentine) bg-pink-200 @else bg-black-300/80 @endif">
 
 <head>
 	<meta charset="utf-8">
@@ -12,7 +13,7 @@
 	<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
+<body class="font-sans antialiase h-full">
 	<div class="min-h-full">
 		<x-site-layout-menu />
 

@@ -9,11 +9,12 @@ use Illuminate\View\Component;
 class SiteLayout extends Component
 {
     public $title;
+    public $valentine;
 
     public function __construct(?string $title = null)
     {
-        // dd($title);
         $this->title = $title;
+        $this->valentine = $this->isValentineDay();
     }
 
     /**
@@ -22,5 +23,10 @@ class SiteLayout extends Component
     public function render(): View|Closure|string
     {
         return view('layouts.site.layout');
+    }
+
+    private function isValentineDay(): bool
+    {
+        return date('m-d') === '11-13';
     }
 }
