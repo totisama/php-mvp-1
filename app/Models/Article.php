@@ -15,6 +15,15 @@ class Article extends Model
         'published_at' => 'datetime',
     ];
 
+    // Relationships
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    // Model methods
+
     public function summary(int $length = 50): string
     {
         return Str::of($this->content)->limit($length);
