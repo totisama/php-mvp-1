@@ -15,12 +15,19 @@ class Article extends Model
         'published_at' => 'datetime',
     ];
 
+
     // Relationships
 
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'article_id');
+    }
+
 
     // Model methods
 
