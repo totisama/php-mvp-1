@@ -23,5 +23,13 @@ class DatabaseSeeder extends Seeder
         Comment::factory()->count(20)->create();
 
         Category::factory()->count(5)->create();
+
+        foreach (Article::all() as $article) {
+            $list_of_categories = Category::inRandomOrder()->take(random_int(0, 4))->get();
+            $article->categories()->attach($list_of_categories);
+        }
+
+        // Category with no articles
+        Category::factory(1)->create();
     }
 }
