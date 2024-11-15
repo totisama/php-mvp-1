@@ -1,6 +1,6 @@
 <x-site-layout title="Welcome page">
   @foreach ($articles as $article)
-    <div class='mt-5'>
+    <a href="/articles/{{$article->id}}" class='mt-5'>
     <h2 class="font-bold text-lg">{{ $article->title }}</h2>
     <small class="text-gray-400">
       {{$article->author?->name ?? 'Unknown'}} |
@@ -17,6 +17,6 @@
       <li>{{ $comment->content }}</li>
     @endforeach
     </ul>
-    </div>
+    </a>
   @endforeach
 </x-site-layout>
