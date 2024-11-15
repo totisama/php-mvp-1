@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ArticleController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class);
+
+Route::get('/articles/{id}', [ArticleController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
