@@ -40,4 +40,11 @@ class Article extends Model
     {
         return Str::of($this->content)->limit($length);
     }
+
+
+    // Model scopes
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')->where('published_at', '<=', now());
+    }
 }
