@@ -20,4 +20,5 @@
       </ul>
     </a>
   @endforeach
+  </div>
 </x-site-layout>

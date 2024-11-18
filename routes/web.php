@@ -12,6 +12,14 @@ Route::get('articles/', [ArticleController::class, 'index'])->name('articles.ind
 
 Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
+
+// Authenticated routes
+Route::prefix('user')->name('user.')->group(function () {
+    Route::resource('articles', App\Http\Controllers\User\ArticleController::class);
+});
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
