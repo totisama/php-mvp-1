@@ -2,12 +2,8 @@
   <form action="{{route('user.articles.store')}}" method="post" class="w-2/3 border border-gray-300 p-4">
     @csrf
 
-    <div class="flex flex-col">
-      <label class="block text-xs font-semibold uppercase" for="title">Title</label>
-      <input class="w-2/3 p-1 rounded-lg border border-gray-200 @error('title') border-red-500 @enderror" type="text"
-        name="title" value="{{old('title')}}" />
-      @error('title') <span class="text-red-600">{{$message}}</span> @enderror
-    </div>
+    <x-form-text name="title" label="Title" />
+
     <div class="my-5 flex flex-col">
       <label class="block text-xs font-semibold uppercase" for="content">Content</label>
       <textarea class="w-2/3 p-1 rounded-lg border border-gray-200 @error('title') border-red-500 @enderror"

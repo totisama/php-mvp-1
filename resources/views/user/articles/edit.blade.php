@@ -4,11 +4,7 @@
     @method('PUT')
     @csrf
 
-    <label for="title" class="block text-xs font-semibold uppercase">Title</label>
-    <input name="title" value="{{old('title', $article->title)}}"
-      class="w-2/3 p-1 rounded-lg border border-gray-200 @error('title') border-red-500 @enderror">
-    @error('title')
-  <div class="text-red-500 text-xs">{{$message}}</div> @enderror
+    <x-form-text name="title" label="Title" value="{{$article->title}}" />
 
     <br /><br />
 
