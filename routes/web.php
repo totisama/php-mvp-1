@@ -14,7 +14,7 @@ Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.
 
 
 // Authenticated routes
-Route::prefix('user')->name('user.')->group(function () {
+Route::prefix('user')->middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::resource('articles', App\Http\Controllers\User\ArticleController::class);
 });
 

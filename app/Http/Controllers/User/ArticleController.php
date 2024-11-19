@@ -10,7 +10,13 @@ class ArticleController extends Controller
 {
 	public function index()
 	{
-		$articles = Article::all();
+		$userId = auth()->user()->id;
+
+		if (!$userId) {
+			abort(401);
+		}
+
+		$articles = Article::where('author_id', $userId)->get();
 
 		return view('user.articles.index', compact('articles'));
 	}
@@ -33,10 +39,16 @@ class ArticleController extends Controller
 			'content' => ['required', 'string'],
 		]);
 
+		$userId = auth()->user()->id;
+
+		if (!$userId) {
+			abort(401);
+		}
+
 		Article::create([
 			'title' => $request->title,
 			'content' => $request->content,
-			'author_id' => '1',
+			'author_id' => $userId,
 		]);
 
 		session()->flash('success', 'Article created successfully!');
@@ -72,6 +84,7 @@ class ArticleController extends Controller
 		$request->validate([
 			'title' => ['required', 'string', 'min:5', 'max:255'],
 			'content' => ['required', 'string'],
+			'author_id' => ['required', 'numeric'],
 		]);
 
 		$article = Article::find($id);
@@ -79,6 +92,7 @@ class ArticleController extends Controller
 		$article->update([
 			'title' => $request->title,
 			'content' => $request->content,
+			'author_id' => $request->author_id,
 		]);
 
 		session()->flash('success', 'Article updated successfully!');
