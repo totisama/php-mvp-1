@@ -6,7 +6,7 @@
 
     <div class="my-5 flex flex-col">
       <label class="block text-xs font-semibold uppercase" for="content">Content</label>
-      <textarea class="w-2/3 p-1 rounded-lg border border-gray-200 @error('title') border-red-500 @enderror"
+      <textarea class="w-2/3 p-1 rounded-lg border border-gray-200 @error('content') border-red-500 @enderror"
         name="content">{{old('content')}}</textarea>
       @error('content') <span class="text-red-600">{{$message}}</span> @enderror
     </div>
