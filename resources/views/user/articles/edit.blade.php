@@ -1,22 +1,32 @@
 <x-site-layout title="Edit article">
-  <form action="{{route('user.articles.update', $article)}}" method="post">
+
+  <form action="{{route('user.articles.update', $article)}}" method="post" class="w-2/3 border border-gray-300 p-4">
     @method('PUT')
     @csrf
 
-    <div class="flex flex-col">
-      <label for="title">Title</label>
-      <input class="border-2" type="text" name="title" value="{{old('title', $article->title)}}" />
-      @error('title') <span class="text-red-600">{{$message}}</span> @enderror
-    </div>
-    <div class="my-5 flex flex-col">
-      <label for="content">Content</label>
-      <textarea class="border-2" name="content">{{old('content', $article->content)}}</textarea>
-      @error('content') <span class="text-red-600">{{$message}}</span> @enderror
-    </div>
-    <div>
+    <label for="title" class="block text-xs font-semibold uppercase">Title</label>
+    <input name="title" value="{{old('title', $article->title)}}"
+      class="w-2/3 p-1 rounded-lg border border-gray-200 @error('title') border-red-500 @enderror">
+    @error('title')
+  <div class="text-red-500 text-xs">{{$message}}</div> @enderror
 
-      <button type="submit" class="bg-gray-300 py-1 px-2 rounded-xl">Update</button>
-      <a href="{{route('user.articles.index')}}">Back</a>
+    <br /><br />
+
+    <label for="content" class="block text-xs font-semibold uppercase">Content</label>
+    <textarea name="content"
+      class="w-full p-1 rounded-lg border border-gray-200 @error('content') border-red-500 @enderror"
+      rows="5">{{old('content', $article->content)}}</textarea>
+    @error('content')
+  <div class="text-red-500 text-xs">{{$message}}</div> @enderror
+
+    <br /><br />
+
+    <div class="w-full flex justify-end gap-x-8">
+      <a href="{{route('user.articles.index')}}"
+        class="text-xs text-gray-700 bg-gray-300 hover:bg-gray-200 px-4 py-2 rounded uppercase">Undo</a>
+      <button type="submit"
+        class="text-xs text-green-700 bg-green-300 hover:bg-green-200 px-4 py-2 rounded uppercase">Save changes</button>
     </div>
   </form>
+
 </x-site-layout>
