@@ -1,8 +1,8 @@
 <x-site-layout title="Overview of my articles">
 
   <div class="flex justify-end mb-4">
-    <a class="text-xs text-green-700 bg-green-300 px-1 py-.5 rounded uppercase"
-      href="{{route('user.articles.create')}}">create article</a>
+    <a class="text-xs text-green-700 bg-green-300 px-1 py-2 rounded uppercase"
+      href="{{route('user.articles.create')}}">Create article</a>
 
   </div>
 

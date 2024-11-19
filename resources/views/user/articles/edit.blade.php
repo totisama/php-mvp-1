@@ -23,7 +23,7 @@
 
     <div class="w-full flex justify-end gap-x-8">
       <a href="{{route('user.articles.index')}}"
-        class="text-xs text-gray-700 bg-gray-300 hover:bg-gray-200 px-4 py-2 rounded uppercase">Undo</a>
+        class="text-xs text-gray-700 bg-gray-300 hover:bg-gray-200 px-4 py-2 rounded uppercase">Back</a>
       <button type="submit"
         class="text-xs text-green-700 bg-green-300 hover:bg-green-200 px-4 py-2 rounded uppercase">Save changes</button>
     </div>
