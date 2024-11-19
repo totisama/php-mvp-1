@@ -13,7 +13,16 @@
       class="w-full p-1 rounded-lg border border-gray-200 @error('content') border-red-500 @enderror"
       rows="5">{{old('content', $article->content)}}</textarea>
     @error('content')
-  <div class="text-red-500 text-xs">{{$message}}</div> @enderror
+    <div class="text-red-500 text-xs">{{$message}}</div> @enderror
+
+    <br /><br />
+
+    <select class="w-full p-1 rounded-lg border border-gray-200 @error('author_id') border-red-500 @enderror"
+      name="author_id">
+      @foreach (\App\Models\User::all()->pluck('name', 'id') as $key => $name)
+      <option value="{{$key}}" {{old('author_id', $article->author_id == $key ? 'selected' : '')}}>{{$name}}</option>
+      @endforeach
+    </select>
 
     <br /><br />
 
