@@ -63,6 +63,8 @@ class ArticleController extends Controller
 	{
 		$article = Article::findOrFail($id);
 
+		$this->isAuthorized($article);
+
 		return view('articles.show', compact('article'));
 	}
 
@@ -72,6 +74,8 @@ class ArticleController extends Controller
 	public function edit(string $id)
 	{
 		$article = Article::find($id);
+
+		$this->isAuthorized($article);
 
 		return view('user.articles.edit', compact('article'));
 	}
@@ -88,6 +92,8 @@ class ArticleController extends Controller
 		]);
 
 		$article = Article::find($id);
+
+		$this->isAuthorized($article);
 
 		$article->update([
 			'title' => $request->title,
@@ -107,10 +113,20 @@ class ArticleController extends Controller
 	{
 		$article = Article::findOrFail($id);
 
+		$this->isAuthorized($article);
+
 		$article->delete();
 
 		session()->flash('success', 'Article deleted successfully!');
 
 		return redirect()->route('user.articles.index');
+	}
+
+	private function isAuthorized(Article $article){
+		$userId = auth()->user()->id;
+
+		if (!$userId || $article->author_id != $userId) {
+			abort(401);
+		}
 	}
 }
