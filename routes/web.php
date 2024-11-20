@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\ArticleController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', WelcomeController::class)->name('welcome');
@@ -12,13 +11,10 @@ Route::get('articles/', [ArticleController::class, 'index'])->name('articles.ind
 
 Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-
 // Authenticated routes
 Route::prefix('user')->middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::resource('articles', App\Http\Controllers\User\ArticleController::class);
 });
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,4 +26,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -10,7 +10,6 @@ class Comment extends Model
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory;
 
-
     // Relationships
 
     public function article()
@@ -22,5 +21,4 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 }

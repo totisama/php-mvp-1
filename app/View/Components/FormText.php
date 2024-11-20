@@ -12,11 +12,10 @@ class FormText extends Component
         public string $name,
         public string $label,
         public ?string $value = null,
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {
-        return view('components.form-text', );
+        return view('components.form-text');
     }
 }
