@@ -21,6 +21,8 @@
       </tr>
     </thead>
 
+    <div>{{$articles->links()}}</div>
+
     <tbody>
       @foreach($articles as $article)
       <tr class="hover:bg-gray-200 border-b border-gray-200">
