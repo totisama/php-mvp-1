@@ -46,4 +46,11 @@ class Article extends Model
     {
         return $query->whereNotNull('published_at')->where('published_at', '<=', now());
     }
+
+    public function isAuthorized(int $userId): void
+    {
+        if (! $userId || $this->author_id != $userId) {
+            abort(401);
+        }
+    }
 }

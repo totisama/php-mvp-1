@@ -14,6 +14,7 @@ Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.
 // Authenticated routes
 Route::prefix('user')->middleware(['auth', 'verified'])->name('user.')->group(function () {
     Route::resource('articles', App\Http\Controllers\User\ArticleController::class);
+    Route::get('articles/{id}/publish', App\Http\Controllers\User\ArticlePublishController::class)->name('articles.publish');
 });
 
 Route::get('/dashboard', function () {
