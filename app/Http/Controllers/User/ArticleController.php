@@ -94,6 +94,7 @@ class ArticleController extends Controller
             'title' => ['required', 'string', 'min:5', 'max:255'],
             'content' => ['required', 'string'],
             'author_id' => ['required', 'numeric'],
+            'categories' => ['nullable', 'array'],
         ]);
 
         $article = Article::find($id);
@@ -105,6 +106,8 @@ class ArticleController extends Controller
             'content' => $request->content,
             'author_id' => $request->author_id,
         ]);
+
+        $article->categories()->sync($request->categories);
 
         session()->flash('success', 'Article updated successfully!');
 

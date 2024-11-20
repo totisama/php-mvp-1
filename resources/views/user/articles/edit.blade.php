@@ -26,6 +26,18 @@
 
     <br /><br />
 
+    <fieldset>
+      @foreach (\App\Models\Category::all() as $category)
+      <div>
+        <input value="{{$category->id}}" type="checkbox" name="categories[]"
+          {{ $article->categories->pluck('id')->contains($category->id) ? 'checked' : '' }} />
+        <label for="scales">{{$category->title}}</label>
+      </div>
+      @endforeach
+    </fieldset>
+
+    <br /><br />
+
     <div class="w-full flex justify-end gap-x-8">
       <a href="{{route('user.articles.index')}}"
         class="text-xs text-gray-700 bg-gray-300 hover:bg-gray-200 px-4 py-2 rounded uppercase">Back</a>
